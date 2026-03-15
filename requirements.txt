@@ -3,3 +3,4 @@ yfinance
 pandas
 plotly
 pycountry
+streamlit-autorefresh
