@@ -156,4 +156,27 @@ def render_audit(name, esc_level, prefix, refresh_tick):
             fig = go.Figure(go.Pie(values=[100-val, val], hole=0.7, marker_colors=[color, "#EDF2F7"], textinfo='none'))
             fig.update_layout(showlegend=False, height=150, margin=dict(t=5, b=5, l=5, r=5), paper_bgcolor='rgba(0,0,0,0)',
                               annotations=[dict(text=f"{100-val}%", x=0.5, y=0.5, font_size=18, showarrow=False)])
-            st.plotly_chart(fig, use_container_width=True, key=f"{prefix}_
+            st.plotly_chart(fig, use_container_width=True, key=f"{prefix}_{i}_{name}_{refresh_tick}")
+            st.markdown(f"<center><small><b>{label}</b></small></center>", unsafe_allow_html=True)
+
+    st.markdown(f"<div class='audit-card'><b>Combined Erasure Score: {avg_erasure}%</b><br><small>National Resilience Node: {resilience_score}/100</small></div>", unsafe_allow_html=True)
+
+col_left, col_right = st.columns(2)
+with col_left: render_audit(country_a, escalation, "A", count)
+with col_right: render_audit(country_b, escalation, "B", count)
+
+# ==========================================
+# 7. STRATEGIST BRIEFING (FULL ENGLISH)
+# ==========================================
+st.divider()
+st.subheader("📡 Lead Architect's Intelligence Briefing")
+with st.expander("Analysis: Maqasid Sharia & Corporate Sustainability", expanded=True):
+    st.write(f"""
+    **Framework Overview by Mohd Khairul Ridhuan:**
+    1. **Live Intelligence Node:** This system monitors global commodity exchanges (Wheat, Gold, Oil) as sensors for geopolitical crisis. The values you see move every 60 seconds, simulating a live data terminal.
+    2. **Maqasid Sharia (Hifz al-Mal):** We audit the 'Erasure' of global wealth integrity. This dashboard quantifies how external kinetic conflicts in the US-Israel-Iran axis translate into a direct 'Hidden Tax' on the purchasing power of the Ummah and the global population.
+    3. **Corporate Sustainability:** Market resilience scores are dynamically adjusted based on volatility. High Erasure scores indicate that a nation's corporate sustainability is under threat from externalized geopolitical shocks.
+    4. **HCI & AI Integration:** By utilizing Human-Computer Interaction (HCI) principles, we translate complex market volatility into visceral visual metrics, allowing high-level strategists to 'feel' the impact of war on national integrity.
+    """)
+
+st.markdown(f"<center><p style='color:grey;'>Lead Architect: <b>Mohd Khairul Ridhuan bin Mohd Fadzil</b> | Version 10.0 (Global Strategic Edition)</p></center>", unsafe_allow_html=True)
